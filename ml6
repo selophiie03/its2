@@ -1,0 +1,253 @@
+
+import pandas as pd
+import numpy as np
+df = pd.read_csv(r"C:\Users\rohan\OneDrive\Desktop\Python Datasets\pima-indians-diabetes.csv", delimiter=',')
+df.head()
+   6  148  72  35    0  33.6  0.627  50  1
+0  1   85  66  29    0  26.6  0.351  31  0
+1  8  183  64   0    0  23.3  0.672  32  1
+2  1   89  66  23   94  28.1  0.167  21  0
+3  0  137  40  35  168  43.1  2.288  33  1
+4  5  116  74   0    0  25.6  0.201  30  0
+x= df.iloc[:,:8]
+y= df.iloc[:,8]
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+#create model
+model = Sequential()
+model.add(Dense(12, input_dim=8, activation='relu'))
+
+#hidden layers
+model.add(Dense(8, activation='relu'))
+model.add(Dense(8, activation='relu'))
+
+#output layer
+model.add(Dense(1, activation='sigmoid'))
+#compile model
+model.compile(loss='binary_crossentropy', optimizer='adam',
+             metrics=['accuracy'])
+#train model
+model.fit(x, y, epochs = 100, batch_size=10)
+Epoch 1/100
+77/77 [==============================] - 1s 1ms/step - loss: 3.6775 - accuracy: 0.5254
+Epoch 2/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.9684 - accuracy: 0.5802
+Epoch 3/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.8022 - accuracy: 0.6037
+Epoch 4/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.7610 - accuracy: 0.6375
+Epoch 5/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.7086 - accuracy: 0.6467
+Epoch 6/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6650 - accuracy: 0.6441
+Epoch 7/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6642 - accuracy: 0.6571
+Epoch 8/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6600 - accuracy: 0.6728
+Epoch 9/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6835 - accuracy: 0.6454
+Epoch 10/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6275 - accuracy: 0.6923
+Epoch 11/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6416 - accuracy: 0.6584
+Epoch 12/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.7130 - accuracy: 0.6467
+Epoch 13/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6222 - accuracy: 0.6936
+Epoch 14/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6081 - accuracy: 0.7053
+Epoch 15/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5889 - accuracy: 0.6949
+Epoch 16/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5949 - accuracy: 0.6975
+Epoch 17/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6329 - accuracy: 0.6910
+Epoch 18/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5820 - accuracy: 0.7119
+Epoch 19/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5829 - accuracy: 0.7080
+Epoch 20/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5822 - accuracy: 0.7053
+Epoch 21/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6209 - accuracy: 0.6741
+Epoch 22/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5659 - accuracy: 0.7314
+Epoch 23/100
+77/77 [==============================] - 0s 2ms/step - loss: 0.5715 - accuracy: 0.7210
+Epoch 24/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.6128 - accuracy: 0.6949
+Epoch 25/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5899 - accuracy: 0.6858
+Epoch 26/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5763 - accuracy: 0.7080
+Epoch 27/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5665 - accuracy: 0.7184
+Epoch 28/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5881 - accuracy: 0.7158
+Epoch 29/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5756 - accuracy: 0.7106
+Epoch 30/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5649 - accuracy: 0.7223
+Epoch 31/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5576 - accuracy: 0.7249
+Epoch 32/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5642 - accuracy: 0.7132
+Epoch 33/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5630 - accuracy: 0.7249
+Epoch 34/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5559 - accuracy: 0.7236
+Epoch 35/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5506 - accuracy: 0.7458
+Epoch 36/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5510 - accuracy: 0.7275
+Epoch 37/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5504 - accuracy: 0.7184
+Epoch 38/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5554 - accuracy: 0.7184
+Epoch 39/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5661 - accuracy: 0.7249
+Epoch 40/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5358 - accuracy: 0.7314
+Epoch 41/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5435 - accuracy: 0.7275
+Epoch 42/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5524 - accuracy: 0.7340
+Epoch 43/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5385 - accuracy: 0.7405
+Epoch 44/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5534 - accuracy: 0.7249
+Epoch 45/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5447 - accuracy: 0.7327
+Epoch 46/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5793 - accuracy: 0.7275
+Epoch 47/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5274 - accuracy: 0.7432
+Epoch 48/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5543 - accuracy: 0.7106
+Epoch 49/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5586 - accuracy: 0.7223
+Epoch 50/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5334 - accuracy: 0.7314
+Epoch 51/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5334 - accuracy: 0.7223
+Epoch 52/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5574 - accuracy: 0.7392
+Epoch 53/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5464 - accuracy: 0.7275
+Epoch 54/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5358 - accuracy: 0.7327
+Epoch 55/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5338 - accuracy: 0.7379
+Epoch 56/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5177 - accuracy: 0.7484
+Epoch 57/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5215 - accuracy: 0.7471
+Epoch 58/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5273 - accuracy: 0.7379
+Epoch 59/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5487 - accuracy: 0.7392
+Epoch 60/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5252 - accuracy: 0.7458
+Epoch 61/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5106 - accuracy: 0.7536
+Epoch 62/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5130 - accuracy: 0.7536
+Epoch 63/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5243 - accuracy: 0.7405
+Epoch 64/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5247 - accuracy: 0.7405
+Epoch 65/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5322 - accuracy: 0.7353
+Epoch 66/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5126 - accuracy: 0.7510
+Epoch 67/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5124 - accuracy: 0.7523
+Epoch 68/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5075 - accuracy: 0.7575
+Epoch 69/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5073 - accuracy: 0.7601
+Epoch 70/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5152 - accuracy: 0.7510
+Epoch 71/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5690 - accuracy: 0.7314
+Epoch 72/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5196 - accuracy: 0.7536
+Epoch 73/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5051 - accuracy: 0.7536
+Epoch 74/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5156 - accuracy: 0.7458
+Epoch 75/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4968 - accuracy: 0.7653
+Epoch 76/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5050 - accuracy: 0.7536
+Epoch 77/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5038 - accuracy: 0.7666
+Epoch 78/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5129 - accuracy: 0.7471
+Epoch 79/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5052 - accuracy: 0.7588
+Epoch 80/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4932 - accuracy: 0.7601
+Epoch 81/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5103 - accuracy: 0.7601
+Epoch 82/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5020 - accuracy: 0.7523
+Epoch 83/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5193 - accuracy: 0.7549
+Epoch 84/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5009 - accuracy: 0.7588
+Epoch 85/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4987 - accuracy: 0.7575
+Epoch 86/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5044 - accuracy: 0.7536
+Epoch 87/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4919 - accuracy: 0.7692
+Epoch 88/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4977 - accuracy: 0.7549
+Epoch 89/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4918 - accuracy: 0.7588
+Epoch 90/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4906 - accuracy: 0.7705
+Epoch 91/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4890 - accuracy: 0.7653
+Epoch 92/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4865 - accuracy: 0.7797
+Epoch 93/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4929 - accuracy: 0.7523
+Epoch 94/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4980 - accuracy: 0.7627
+Epoch 95/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4861 - accuracy: 0.7588
+Epoch 96/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4968 - accuracy: 0.7601
+Epoch 97/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.5067 - accuracy: 0.7432
+Epoch 98/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4866 - accuracy: 0.7614
+Epoch 99/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4995 - accuracy: 0.7549
+Epoch 100/100
+77/77 [==============================] - 0s 1ms/step - loss: 0.4832 - accuracy: 0.7640
+<keras.callbacks.History at 0x1f871d57580>
+#evaluate
+model.evaluate(x,y)
+24/24 [==============================] - 0s 1ms/step - loss: 0.4629 - accuracy: 0.7771
+[0.46289893984794617, 0.7770534753799438]
+model.summary()
+Model: "sequential"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 12)                108       
+                                                                 
+ dense_1 (Dense)             (None, 8)                 104       
+                                                                 
+ dense_2 (Dense)             (None, 8)                 72        
+                                                                 
+ dense_3 (Dense)             (None, 1)                 9         
+                                                                 
+=================================================================
+Total params: 293
+Trainable params: 293
+Non-trainable params: 0
