@@ -1,0 +1,138 @@
+#include<iostream>
+#include<algorithm>
+#include<bits/stdc++.h>
+using namespace std;
+
+
+typedef struct obejct
+{
+    int profit;
+    int weight;
+
+    obejct(int profit,int weight)   
+    {
+        this->profit=profit;
+        this->weight=weight;
+    }
+}obj;  
+
+int cmp1(obj a,obj b)    
+{
+    int temp1,temp2;
+    temp1=a.profit;
+    temp2=b.profit;
+    return temp1>temp2;
+}
+float ks1(obj a[],int k_capacity,int n)
+{
+    int curr_weight=0;       
+    float total_profit=0.0;     
+    int r_capacity;           
+
+    sort(a,a+n,cmp1);   
+
+   
+    for(int i=0;i<n;i++)
+    {
+        
+        if(curr_weight+a[i].weight<=k_capacity)
+        {
+            curr_weight=curr_weight+a[i].weight;
+            total_profit=total_profit+a[i].profit;
+        }
+        else
+        {
+           
+            r_capacity=k_capacity-curr_weight;        
+            total_profit=total_profit+(float)(r_capacity*a[i].profit)/a[i].weight;
+            break;
+        }
+    }
+    return total_profit;     
+}
+
+
+int cmp2(obj a,obj b)  
+{
+    float temp1,temp2;
+    temp1=a.weight;
+    temp2=b.weight;
+    return temp1<temp2;
+}
+float ks2(obj a[],int k_capacity,int n)
+{
+    int curr_weight=0;     
+    float total_profit=0.0;    
+    int r_capacity;         
+
+    sort(a,a+n,cmp2);  
+    for(int i=0;i<n;i++)
+    {
+       
+        if(curr_weight+a[i].weight<=k_capacity)
+        {
+            curr_weight=curr_weight+a[i].weight;
+            total_profit=total_profit+a[i].profit;
+        }
+        else
+        {
+           
+            r_capacity=k_capacity-curr_weight;            
+            total_profit=total_profit+(float)(r_capacity*a[i].profit)/a[i].weight;
+            break;
+        }
+    }
+    return total_profit;   
+}
+
+
+int cmp3(obj a,obj b) 
+{
+    float temp1,temp2;
+    temp1=(float)a.profit/a.weight;
+    temp2=(float)b.profit/b.weight;
+    return temp1>temp2;
+}
+float ks3(obj a[],int k_capacity,int n)
+{
+    int curr_weight=0;        
+    float total_profit=0.0;     
+    float r_capacity;          
+    sort(a,a+n,cmp3);      
+    for(int i=0;i<n;i++)
+    {
+        if(curr_weight+a[i].weight<=k_capacity)
+        {
+           
+            curr_weight=curr_weight+a[i].weight;
+            total_profit=total_profit+a[i].profit;
+        }
+        else
+        {
+            
+            r_capacity=k_capacity-curr_weight;          
+            total_profit=total_profit+(float)(r_capacity*a[i].profit)/a[i].weight; 
+            break;
+        }
+    }
+    return total_profit;     
+}
+
+int main()
+{
+    int k_capacity=110;    
+    
+    obj a[]={{40,80},{10,10},{50,40},{30,20},{60,90}};   
+    int size=sizeof(a)/sizeof(a[0]);             
+
+    cout<<"Case-I:Greedy about profit: "<<endl;
+    cout<<"Total Profit:"<<ks1(a,k_capacity,size)<<endl;
+
+    cout<<"Case-II:Greedy about weight: "<<endl;
+    cout<<"Total profit:"<<ks2(a,k_capacity,size)<<endl;
+
+    cout<<"Case-III:Greedy about Profit/Weight: "<<endl;
+    cout<<"Total profit:"<<ks3(a,k_capacity,size)<<endl;
+
+    return 0;
+}
