@@ -1,0 +1,86 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+//Structure for node of graph
+struct node
+{
+	int u;
+	int v;
+	int wt;
+	node(int u,int v,int wt)  //Constructor for creation of node
+	{
+		this->u=u;
+		this->v=v;
+		this->wt=wt;
+	}
+};
+
+int main()
+{
+	int n,m;     //n=Number of vertices and m=Number of edges
+	cout<<"Enter the number of vertices: "<<endl;
+	cin>>n;
+	cout<<"Enter the number of edges: "<<endl;
+	cin>>m;
+
+	//u=current vertex, v=next vertex, wt=distance between these two this two vertices
+	int u,v,wt;
+	vector<node> edges;  
+	cout<<"Enter the source,vertex and weight: "<<endl;
+	cout<<"u"<<" v"<<" wt"<<endl;
+	for(int i=0;i<m;i++)
+	{
+		cin>>u>>v>>wt;
+		edges.push_back(node(u,v,wt));
+	}
+	
+	int src;
+	cout<<"Enter the source: "<<endl;  //Taking input i.e...source vertex
+	cin>>src;    
+	
+	int inf=100000;  
+	vector<int> dist(n,inf);    //At the beginnig all the vertices are having weight(distnace) infinity
+	dist[src]=0;				//The distance(weight) of source to source is 0
+	
+	for(int i=0;i<=n-1;i++)
+	{
+		//Loop for each relaxing each edge
+		for(auto it:edges)      //Here we are relaxing every edge(repeatedly) for |n-1| times
+		{
+			if(dist[it.u] + it.wt < dist[it.v])   
+			{
+                                          dist[it.v] = dist[it.u] + it.wt; 
+                                    }
+		}
+	}
+	
+	//Check for negative cycles
+	//After relaxing each edge |n-1| times, if distance of any vertex is getting reduced
+	//that means there is negatibe cycle
+	//And otherwise if distances are remain same so there is no negative cycle
+	int f=0;
+	for(auto it:edges)
+	{
+		if(dist[it.u]+it.wt<dist[it.v])   //Checking condition
+		{
+			cout<<"Graph contains negative-weight cycle"<<endl;
+			f=1;
+			break;
+		}
+	}
+	
+	//If negative cycle is not found then 
+	//then print out vertex and its corresponding 
+	//distance with respect to source
+	if(!f)
+	{
+		for(int i=1;i<=n;i++)
+		{
+                                    cout<<"Corresponding vertex and its distance from source: "<<endl;
+			cout<<i<<" "<<dist[i]<<endl;
+		}
+	}
+	
+	return 0;
+}
